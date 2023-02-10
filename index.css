@@ -1,0 +1,17 @@
+.container{
+    padding: 16px;
+    border: red 1px solid;
+}
+.red-btn{
+    color: white;
+    background-color: red;
+}
+.display-container table, .display-container td, .display-container th{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.display-container td, .display-container th{
+    color: white;
+    background-color: red;
+    padding: 0 10px;
+}
