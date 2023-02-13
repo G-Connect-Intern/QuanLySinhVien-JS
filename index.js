@@ -9,23 +9,22 @@ class SinhVien {
 }
 
 let editingSinhVienIndex;
+let listSinhVienNeededRemove = []
 
 
 // Fake list
 let listSinhVien = []
+listSinhVien.push(new SinhVien('123', 'Ta Minh Huy', '12/10/2003', 'Nam', 'AT'))
+listSinhVien.push(new SinhVien('123', 'Ta Minh A', '12/10/2003', 'Nam', 'AT'))
+listSinhVien.push(new SinhVien('123', 'Ta Minh B', '12/10/2003', 'Nam', 'AT'))
+listSinhVien.push(new SinhVien('123', 'Ta Minh C', '12/10/2003', 'Nam', 'AT'))
+listSinhVien.push(new SinhVien('123', 'Ta Minh D', '12/10/2003', 'Nam', 'AT'))
+listSinhVien.push(new SinhVien('123', 'Ta Minh E', '12/10/2003', 'Nam', 'AT'))
+listSinhVien.push(new SinhVien('123', 'Ta Minh F', '12/10/2003', 'Nam', 'AT'))
+listSinhVien.push(new SinhVien('123', 'Ta Minh G', '12/10/2003', 'Nam', 'AT'))
 
-setDefaultListSinhVien()
+let templateListSinhVien = []
 
-function setDefaultListSinhVien(params) {
-    listSinhVien.push(new SinhVien('123', 'Ta Minh Huy', '12/10/2003', 'Nam', 'AT'))
-    listSinhVien.push(new SinhVien('123', 'Ta Minh A', '12/10/2003', 'Nam', 'AT'))
-    listSinhVien.push(new SinhVien('123', 'Ta Minh B', '12/10/2003', 'Nam', 'AT'))
-    listSinhVien.push(new SinhVien('123', 'Ta Minh C', '12/10/2003', 'Nam', 'AT'))
-    listSinhVien.push(new SinhVien('123', 'Ta Minh D', '12/10/2003', 'Nam', 'AT'))
-    listSinhVien.push(new SinhVien('123', 'Ta Minh E', '12/10/2003', 'Nam', 'AT'))
-    listSinhVien.push(new SinhVien('123', 'Ta Minh F', '12/10/2003', 'Nam', 'AT'))
-    listSinhVien.push(new SinhVien('123', 'Ta Minh G', '12/10/2003', 'Nam', 'AT'))
-}
 
 
 function themSinhVien() {
@@ -56,6 +55,39 @@ function themSinhVien() {
     capNhatBang()
 
 }
+
+function searchSinhVien(){
+    let resultSearchedSinhVien = []
+    let keyword = $('#txtTuKhoa').val()
+    for(let i = 0; i<listSinhVien.length; i++){
+        if(listSinhVien[i].MaSV == keyword || listSinhVien[i].TenSV == keyword || listSinhVien[i].NgaySinh == keyword || listSinhVien[i].GioiTinh == keyword ){
+            resultSearchedSinhVien.push(listSinhVien[i])
+        }
+    }
+    console.log(resultSearchedSinhVien);
+    if(keyword){
+        templateListSinhVien = listSinhVien.slice()
+        listSinhVien = resultSearchedSinhVien.slice()
+    } else {
+        listSinhVien = templateListSinhVien.slice()
+    }
+    capNhatBang()
+    
+}
+
+function addToListSinhVienNeededRemove(e){
+    if(e.target.checked){
+        listSinhVienNeededRemove.push(e.target.value)
+    } else {
+        for(let i = listSinhVienNeededRemove.length - 1; i >= 0; i--){
+            if(listSinhVienNeededRemove[i] == e.target.value + ''){
+                listSinhVienNeededRemove.splice(i, 1)
+            }
+        }
+    }
+    console.log(listSinhVienNeededRemove);
+}
+
 function suaSinhVien() {
     // Get Thong Tin
 
@@ -73,6 +105,15 @@ function suaSinhVien() {
 
     capNhatBang()
 }
+
+function xoaNhieuSinhVien(){
+    for(let i = listSinhVienNeededRemove.length; i >=0; i--){
+        listSinhVien.splice(listSinhVienNeededRemove[i], 1)
+    }
+    capNhatBang()
+    console.log('Da xoa!');
+}
+
 function getSinhVien(index) {
     console.log(index);
     // Set value for all textboxes
@@ -104,7 +145,7 @@ function capNhatBang() {
         html += `
             <tr>
                 <td>
-                    <input type="checkbox" />
+                    <input type="checkbox" onchange="addToListSinhVienNeededRemove(event)" value="${index}"/>
                 </td>
                 <td>${sv.MaSV}</td>
                 <td>${sv.TenSV}</td>
@@ -116,9 +157,6 @@ function capNhatBang() {
                 </td>
             </tr>
         `
-        $('.tbl-sinh-vien').html(html)
     }
-    if(listSinhVien.length == 0){
-        setDefaultListSinhVien()
-    }
+    $('.tbl-sinh-vien').html(html)
 }

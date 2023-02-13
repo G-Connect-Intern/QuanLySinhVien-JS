@@ -16,8 +16,8 @@
     <div class="search-container container">
         <form action="">
             <label for="txtTuKhoa">Từ khóa</label>
-            <input type="text" name="txtTuKhoa" placeholder="Từ khóa cần tìm">
-            <input type="button" name="btnTimKiem" class="red-btn" value="Tìm kiếm">
+            <input type="text" id="txtTuKhoa" name="txtTuKhoa" placeholder="Từ khóa cần tìm">
+            <input type="button" name="btnTimKiem" onclick="searchSinhVien()" class="red-btn" value="Tìm kiếm">
         </form>
     </div>
     <br>
@@ -175,7 +175,7 @@
     <div class="action-container container">
         <input type="button" name="" id="" onclick="themSinhVien()" class="red-btn" value="Thêm mới">
         <input type="button" name="" id="" onclick="suaSinhVien()" class="red-btn" value="Cập nhật">
-        <input type="button" name="" id="" class="red-btn" value="Xóa">
+        <input type="button" name="" id="" onclick="xoaNhieuSinhVien()" class="red-btn" value="Xóa">
         <br>
         <br>
         <form action="">
