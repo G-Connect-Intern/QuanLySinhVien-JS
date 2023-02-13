@@ -13,16 +13,19 @@ let editingSinhVienIndex;
 
 // Fake list
 let listSinhVien = []
-listSinhVien.push(new SinhVien('123', 'Ta Minh Huy', '12/10/2003', 'Nam', 'AT'))
-listSinhVien.push(new SinhVien('123', 'Ta Minh A', '12/10/2003', 'Nam', 'AT'))
-listSinhVien.push(new SinhVien('123', 'Ta Minh B', '12/10/2003', 'Nam', 'AT'))
-listSinhVien.push(new SinhVien('123', 'Ta Minh C', '12/10/2003', 'Nam', 'AT'))
-listSinhVien.push(new SinhVien('123', 'Ta Minh D', '12/10/2003', 'Nam', 'AT'))
-listSinhVien.push(new SinhVien('123', 'Ta Minh E', '12/10/2003', 'Nam', 'AT'))
-listSinhVien.push(new SinhVien('123', 'Ta Minh F', '12/10/2003', 'Nam', 'AT'))
-listSinhVien.push(new SinhVien('123', 'Ta Minh G', '12/10/2003', 'Nam', 'AT'))
 
+setDefaultListSinhVien()
 
+function setDefaultListSinhVien(params) {
+    listSinhVien.push(new SinhVien('123', 'Ta Minh Huy', '12/10/2003', 'Nam', 'AT'))
+    listSinhVien.push(new SinhVien('123', 'Ta Minh A', '12/10/2003', 'Nam', 'AT'))
+    listSinhVien.push(new SinhVien('123', 'Ta Minh B', '12/10/2003', 'Nam', 'AT'))
+    listSinhVien.push(new SinhVien('123', 'Ta Minh C', '12/10/2003', 'Nam', 'AT'))
+    listSinhVien.push(new SinhVien('123', 'Ta Minh D', '12/10/2003', 'Nam', 'AT'))
+    listSinhVien.push(new SinhVien('123', 'Ta Minh E', '12/10/2003', 'Nam', 'AT'))
+    listSinhVien.push(new SinhVien('123', 'Ta Minh F', '12/10/2003', 'Nam', 'AT'))
+    listSinhVien.push(new SinhVien('123', 'Ta Minh G', '12/10/2003', 'Nam', 'AT'))
+}
 
 
 function themSinhVien() {
@@ -114,5 +117,8 @@ function capNhatBang() {
             </tr>
         `
         $('.tbl-sinh-vien').html(html)
+    }
+    if(listSinhVien.length == 0){
+        setDefaultListSinhVien()
     }
 }
